@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+<body>
+	<form method="POST">
+	{{ form.weapon }}
+	<input type="submit">
+	</form>
+k content %}
+{% endblock %}
+

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+<body>
+	<form method="POST">
+	{{ form.weapon }}
+	
+	</form>
+
+	<form method="POST">
+        {{ form.ammotype }}
+        
+        </form>
+
+	<form method="POST">
+        {{ form.bodyarmor }}
+        
+        </form>
+
+	<form method="POST">
+        {{ form.helmet }}
+        
+        </form>
+
+
+
+	<div>
+    <div class="form-group">
+        {{ form.submit }}
+    <div>
+</body>
+
+{% endblock %}
+

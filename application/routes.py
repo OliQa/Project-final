@@ -1,4 +1,5 @@
 
+
 from flask import render_template, render_template, url_for, redirect, request
 from application import app, db, bcrypt
 from application.models import Gear, Users
@@ -10,6 +11,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route('/')
 @app.route('/home')
 def home():
+	gear = Gear.query.all()
 	return render_template('home.html', title='Home')
 
 
@@ -61,15 +63,20 @@ def logout():
 	return redirect(url_for('login'))
 
 @app.route('/setup', methods=['GET', 'POST'])
+@login_required
 def setup():
 	form = SetupForm()
 	if form.validate_on_submit():
 		gear = Gear(
+				buildname=form.comment.data,
+				comment=form.comment.data,
 				weapon=form.weapon.data,
-				ammotype=form.ammotpye.data,
+				ammotype=form.ammotype.data,
 				bodyarmour=form.bodyarmour.data,
 				helmet=form.helmet.data
 	)
 		db.session.add(gear)
 		db.session.commit()
-	return render_template("class.html", form=form)
+		return redirect(url_for('home'))
+	return render_template("newclass.html", form=form)
+

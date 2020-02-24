@@ -47,9 +47,11 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class SetupForm(FlaskForm):
-	weapon = SelectField('weapon select', choices=[('ADAR', 'ADAR 2-5'), ('AK1', 'AK-101'), ('AK2', 'AK-74'), ('HK1', 'HK 416A5'), ('M4', 'M4A1')])
-	ammotype = SelectField('Ammo select', choices=[('5', '5.56x45mm'), ('7', '7.62x39mm')])
-	bodyarmor = SelectField('Bodyarmor select', choices=[('paca', 'PACA Soft Armor'), ('mf', 'MF-UNTAR Vest'), ('assault', '6B13 Assault armor')])
-	helmet = SelectField('Helmet select', choices=[('tank', 'Soft Tank Crew'), ('PSH', 'PSH-97 "Djeta" helmet'), ('6B47', '6B47 Ratnik-BSh Helmet')])
+	buildname = StringField('Build name: ', validators=[DataRequired()])
+	comment = StringField('Comment:')
+	weapon = SelectField('Weapon select', choices=[('ADAR 2-5', 'ADAR 2-5'), ('AK-101', 'AK-101'), ('AK-74', 'AK-74'), ('HK 416A5', 'HK 416A5'), ('M4A1', 'M4A1')])
+	ammotype = SelectField('Ammo select', choices=[('5.56x45mm', '5.56x45mm'), ('7.62x39mm', '7.62x39mm')])
+	bodyarmour = SelectField('Bodyarmour select', choices=[('PACA Soft Armor', 'PACA Soft Armor'), ('MF-UNTAR Vest', 'MF-UNTAR Vest'), ('6B13 Assault armor', '6B13 Assault armor')])
+	helmet = SelectField('Helmet select', choices=[('Soft Tank Crew', 'Soft Tank Crew'), ('PSH-97 "Djeta" helmet', 'PSH-97 "Djeta" helmet'), ('6B47 Ratnik-BSh Helmet', '6B47 Ratnik-BSh Helmet')])
 
 	submit =SubmitField('Submit')

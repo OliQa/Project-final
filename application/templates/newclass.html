@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method="POST">
+ <div class="POST">
+        {{ form.hidden_tag() }}
+        </div>
+        <div method="POST">
+        {{ form.buildname.label }}
+	{{ form.buildname }}
+	{{ form.comment.label }}
+	{{ form.comment }}
+	{{ form.weapon.label }}
+        {{ form.weapon }}
+	{{ form.ammotype.label }}
+	{{ form.ammotype }}
+	{{ form.bodyarmour.label }}
+	{{ form.bodyarmour }}
+	{{ form.helmet.label }}
+	{{ form.helmet }}
+	
+
+	</div>
+<div class="form-group">
+        {{ form.submit }}
+    </div>
+</form>
+
+{% endblock %}
+

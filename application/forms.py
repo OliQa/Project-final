@@ -22,7 +22,10 @@ class RegisterForm(FlaskForm):
 			EqualTo('password')
 		]
 	)
+
+
 	submit = SubmitField('Regsiter')
+
 
 
 
@@ -45,6 +48,7 @@ class LoginForm(FlaskForm):
 
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
 
 class SetupForm(FlaskForm):
 	buildname = StringField('Build name: ', validators=[DataRequired()])

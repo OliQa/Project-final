@@ -24,7 +24,7 @@ class Users(db.Model, UserMixin):
 class Gear(db.Model):
 
 	buildid = db.Column(db.Integer, primary_key=True)
-	userid = db.Column(db.Integer,db.ForeignKey('users.id'))
+	id = db.Column(db.Integer,db.ForeignKey('users.id'))
 	weapon = db.Column(db.String(40), nullable=True)
 	ammotype = db.Column(db.String(20), nullable=True)
 	bodyarmour = db.Column(db.String(100), nullable=True)
@@ -34,11 +34,5 @@ class Gear(db.Model):
 
 	def __repr__(self):
 		return ''.join([
-		'Title: ',self.buildname,
-		'comment: ',self.comment,
-		'weapon: ', self.weapon,
-		'ammo: ',self.ammotype,
-		'bodyarmour: '.self.bodyarmour,
-		'helmet: '.self.helmet,
-		])
+		'Title: ',self.buildname, '/r/n'])
 

@@ -70,12 +70,13 @@ def setup():
 	form = SetupForm()
 	if form.validate_on_submit():
 		gear = Gear(
-				buildname=form.comment.data,
-				comment=form.comment.data,
-				weapon=form.weapon.data,
-				ammotype=form.ammotype.data,
-				bodyarmour=form.bodyarmour.data,
-				helmet=form.helmet.data
+				build_id=current_user.id,
+                                buildname=form.comment.data,
+                                comment=form.comment.data,
+                                weapon=form.weapon.data,
+                                ammotype=form.ammotype.data,
+                                bodyarmour=form.bodyarmour.data,
+                                helmet=form.helmet.data
 	)
 		db.session.add(gear)
 		db.session.commit()

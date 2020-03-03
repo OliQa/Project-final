@@ -33,3 +33,13 @@ class Gear(db.Model):
         helmet = db.Column(db.String(100), nullable=True)
         buildname = db.Column(db.String(50), nullable=False)
         comment = db.Column(db.String(250), nullable=True)
+
+        def __repr__(self):
+            return ''.join([
+			'Title: ',self.buildname, '\r\n',
+			'Comment: ',self.comment, '\r\n',
+			'Weapon: ',self.weapon, '\r\n',
+			'Ammo: ',self.ammotype, '\r\n',
+			'Bodyarmour: ',self.bodyarmour, '\r\n',
+			'Helmet: ',self.helmet, '\r\n'
+			])

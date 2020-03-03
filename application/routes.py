@@ -11,10 +11,10 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route('/')
 @app.route('/home')
 def home():
-	gear = Gear.query.all()
-	
+	gearData = Gear.query.first()
 
-	return render_template('home.html', title='Home')
+
+	return render_template('home.html', title='Home' , gear=gearData)
 
 
 

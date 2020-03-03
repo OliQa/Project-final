@@ -1,18 +1,27 @@
-{% extends "layout.html" %}
+#{% extends "layout.html" %}
 {% block content %}
-{% if gear %}
-    {% for gear in Gear %}
+
+
+
         <div>
-            <h3>{{ gear.buildname }}</h3>
-            <p>{{ gear.comment }}</p>
-	            
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('delete_post_by_id', id=post.id) }}">delete</a>
-            {% endif %}
+            <h3> Name:{{ gear.buildname }}</h3>
+            <h3> Comment:{{ gear.comment }}</h3>
+            <h3> Weapon:{{ gear.weapon }}</h3>
+            <h3> Ammo:{{ gear.ammotype }}</h3>
+  	
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
-    {% endfor %}
-{% else %}
-    <p>There are no posts to display.</p>
-{% endif %}
+
 
 {% endblock %}

@@ -1,0 +1,50 @@
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, SelectField
+from wtforms.validators import DataRequired, Length, Email, EqualTo
+from application.models import Users, Gear
+
+
+class RegisterForm(FlaskForm):
+	email = StringField('Email',
+	validators = [
+			DataRequired(),
+			Email()
+		]
+	)
+	password = PasswordField('Password',
+	validators = [
+			DataRequired(),
+		]
+	)
+	confirm_password = PasswordField('Confirm Password',
+	validators = [
+			DataRequired(),
+			EqualTo('password')
+		]
+	)
+	submit = SubmitField('Regsiter')
+
+
+
+
+
+
+class LoginForm(FlaskForm):
+    email = StringField('Email',
+        validators=[
+            DataRequired(),
+            Email()
+        ]
+    )
+
+    password = PasswordField('Password',
+        validators=[
+            DataRequired()
+        ]
+    )
+
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
+
+class SetupForm(FlaskForm):
+	weapon = SelectField('weapon select', choices=[('ADAR', 'ADAR 2-15')])

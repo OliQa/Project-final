@@ -2,9 +2,24 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from application.models import Users, Gear
-
+from flask_login import current_user
 
 class RegisterForm(FlaskForm):
+
+
+
+	first_name = StringField('First Name',
+	validators = [
+			DataRequired(),
+			Length(min=2, max=30)
+		]
+	)
+	last_name = StringField('Last Name',
+	validators = [
+			DataRequired(),
+			Length(min=2, max=30)
+		]
+	)
 	email = StringField('Email',
 	validators = [
 			DataRequired(),
@@ -22,6 +37,14 @@ class RegisterForm(FlaskForm):
 			EqualTo('password')
 		]
 	)
+
+
+
+
+
+
+
+
 
 
 	submit = SubmitField('Regsiter')
@@ -60,4 +83,31 @@ class SetupForm(FlaskForm):
 	bodyarmour = SelectField('Bodyarmour select', choices=[('PACA Soft Armor', 'PACA Soft Armor')])
 	helmet = SelectField('Helmet select', choices=[('Soft Tank Crew', 'Soft Tank Crew')])
 
-	submit =SubmitField('Submit')
+	submit = SubmitField('Submit')
+
+
+
+class AccountUpdateForm(FlaskForm):
+	first_name = StringField('First Name',
+		validators=[
+			DataRequired(),
+			Length(min=2, max=30)
+		])
+	last_name = StringField('Last Name',
+		validators=[
+			DataRequired(),
+			Length(min=2, max=30)
+		])
+	email = StringField('Email',
+		validators=[
+			DataRequired(),
+			Email()
+		])
+	submit = SubmitField('Update')
+
+	def validate_email(self,email):
+		if email.data != current_user.email:
+			user = Users.query.filter_by(email=email.data).first()
+			if user:
+				raise ValidationError('Email already in use')
+

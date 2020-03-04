@@ -13,12 +13,16 @@ def load_user(id):
 
 
 class Users(db.Model, UserMixin):
+        first_name = db.Column(db.String(30), nullable=False)
+        last_name = db.Column(db.String(30), nullable=False)
         id = db.Column(db.Integer, primary_key=True)
         email = db.Column(db.String(500), nullable=False, unique=True)
         password = db.Column(db.String(500), nullable=False)
 
         def __repr__(self):
-                return ''.join(['UserID: ', str(self.id), '\r\n', 'Email: ', self.email])
+                return ''.join(['UserID: ', str(self.id), '\r\n', 'Email: ', self.email,
+				'Name: ',self.first_name,  self.last_name,' \r\n'])
+
 
 
 

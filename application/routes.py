@@ -3,7 +3,7 @@
 from flask import render_template, render_template, url_for, redirect, request
 from application import app, db, bcrypt
 from application.models import Gear, Users
-from application.forms import RegisterForm, LoginForm, SetupForm
+from application.forms import RegisterForm, LoginForm, SetupForm, AccountUpdateForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -11,7 +11,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route('/')
 @app.route('/home')
 def home():
-	gearData = Gear.query.first()
+	gearData = Gear.query.all()
 
 
 	return render_template('home.html', title='Home' , gear=gearData)
@@ -51,8 +51,24 @@ def register():
     if form.validate_on_submit():
         user = Users(
             email=form.email.data,
-            password=bcrypt.generate_password_hash(form.password.data)
+            password=bcrypt.generate_password_hash(form.password.data),
+	    first_name=form.first_name.data,
+	    last_name=form.last_name.data
+
+
         )
+
+
+
+
+
+
+
+
+
+
+
+
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('login'))
@@ -82,4 +98,22 @@ def setup():
 		db.session.commit()
 		return redirect(url_for('home'))
 	return render_template("newclass.html", form=form)
+
+@app.route('/account', methods=['GET', 'POST'])
+@login_required
+def account():
+	form = AccountUpdateForm()
+	if form.validate_on_submit():
+		current_user.first_name = form.first_name.data
+		current_user.last_name = form.last_name.data
+		current_user.email = form.email.data
+
+
+		db.session.commit()
+		return redirect(url_for('home'))
+	elif request.method == 'GET':
+		form.first_name.data = current_user.first_name
+		form.last_name.data = current_user.last_name
+		form.email.data = current_user.email
+	return render_template('account.html', title='Account', form=form)
 

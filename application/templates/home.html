@@ -1,27 +1,16 @@
-#{% extends "layout.html" %}
+{% extends "layout.html" %}
 {% block content %}
-
-
-
+{% if newclass %}
+    {% for newclass in newclasss %}
         <div>
-            <h3> Name:{{ gear.buildname }}</h3>
-            <h3> Comment:{{ gear.comment }}</h3>
-            <h3> Weapon:{{ gear.weapon }}</h3>
-            <h3> Ammo:{{ gear.ammotype }}</h3>
-  	
-
-
-
-
-
-
-
-
-
-
-
+            <h3>{{ gear.buildname }}</h3>
+            <p>{{ gear.comment }}</p>
+	            
 
         </div>
-
+    {% endfor %}
+{% else %}
+    <p>There are no posts to display.</p>
+{% endif %}
 
 {% endblock %}
